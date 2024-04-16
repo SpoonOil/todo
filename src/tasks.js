@@ -8,6 +8,10 @@ class Task {
   complete() {
     this.completed = "completed"
   }
+
+  uncomplete() {
+    this.completed = "notCompleted"
+  }
 }
 
 class TaskList {

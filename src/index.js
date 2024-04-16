@@ -8,4 +8,4 @@ test.addTask("bruh", "this is a test task");
 
 const taskDisplay = document.querySelector('.task-display-list')
 
-DOM.renderTaskList(taskDisplay, test.tasks)
+DOM.renderTaskList(taskDisplay, test)
