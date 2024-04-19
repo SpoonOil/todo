@@ -17,10 +17,14 @@
         </ul> 
       </div>
       <div class="rightPanel bg-slate-500 h-screen">
-        <div class="add-task-display rounded-lg bg-slate-50">
+        <div id="add-task-display" class="add-task-display rounded-lg bg-slate-50 flex flex-col" >
           <button type = "button" id = "add-task-button">
             Add Task
           </button>
+          <label for="task-name-input">Task Name</label>
+          <input type="text" name="task-name" id="task-name-input">
+          <label for="task-description-input">Task Description</label>
+          <input type="text" name="task-description-input" id="task-description-input">
         </div>
       </div>
     </main>

@@ -1,9 +1,12 @@
 class Overhead {
-    constructor(addButtonNode, taskList, renderFunction) {
+    constructor(addDisplayNode, taskList, renderFunction) {
         renderFunction();
-        addButtonNode.addEventListener('click', (e) => {
+        const button = addDisplayNode.querySelector('#add-task-button')
+        const nameInput = addDisplayNode.querySelector('#task-name-input')
+        const descriptionInput = addDisplayNode.querySelector('#task-description-input')
+        button.addEventListener('click', (e) => {
             console.log('clicked');
-            this.addTask('test', 'test d');
+            this.addTask(nameInput.value, descriptionInput.value);
         })
         console.log('contructed')
 
