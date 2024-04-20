@@ -19,6 +19,11 @@ class Overhead {
         this.renderFunction();
     }
 
+    removeTask(name) {
+        this.taskList.removeTask(name)
+        this.renderFunction();
+    }
+
 }
 
 export default Overhead

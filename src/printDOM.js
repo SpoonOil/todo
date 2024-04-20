@@ -1,28 +1,39 @@
 class DOMHandler {
-  constructor() {
-    
+  constructor(ulNode, taskList) {
+    this.ulNode = ulNode
+    this.taskList = taskList
   }
   
-  renderTaskList(ulNode, taskList) {
-    while (ulNode.firstChild) {
-      ulNode.firstChild.remove()
+  renderTaskList() {
+    while (this.ulNode.firstChild) {
+      this.ulNode.firstChild.remove()
     }
 
-    for (let task of taskList.getTasks()) {
+    for (let task of this.taskList.getTasks()) {
       const li = document.createElement('li')  
       const title = document.createElement('h3')
       const description =document.createElement('p')
       const checkbox = document.createElement('input');
+      const close = document.createElement('button')
+
+      close.innerText = 'X'
+      close.addEventListener('click', () => {
+        this.taskList.removeTask(task.name)
+        this.renderTaskList()
+      })
+
+      // placeholder
+      close.style.padding = '5px'
 
       checkbox.type = 'checkbox'
       checkbox.task = task
       checkbox.addEventListener('click', () => {
         if (task.completed == "notCompleted") {
           task.complete()
-          DOM.renderTaskList(ulNode, taskList)
+          this.renderTaskList()
         } else {
           task.uncomplete()
-          DOM.renderTaskList(ulNode, taskList)
+          this.renderTaskList()
         }
       })
 
@@ -31,16 +42,15 @@ class DOMHandler {
       li.appendChild(title);
       li.appendChild(description);
       li.appendChild(checkbox)
+      li.appendChild(close)
 
       if (task.completed == "completed") {
         li.style.backgroundColor = 'green'
         checkbox.checked = true;
       }
-      ulNode.appendChild(li)
+      this.ulNode.appendChild(li)
     }
   }
 }
 
-const DOM = new DOMHandler()
-
-export default DOM
+export default DOMHandler
