@@ -38,16 +38,4 @@ class TaskList {
   }
 }
 
-// testList = new TaskList('test', 'testd')
-// 
-// testList.addTask('code', 'do your coding')
-// 
-// console.table(testList)
-// 
-// testList.completeTask('code')
-// console.table(testList)
-// 
-// testList.removeTask('code')
-// console.table(testList)
-
 export {Task, TaskList}
