@@ -11,6 +11,7 @@ class DOMHandler {
 
     for (let task of this.taskList.getTasks()) {
       const li = document.createElement('li')  
+      li.style.classList = "bg-slate-400"
       const title = document.createElement('h3')
       const description =document.createElement('p')
       const checkbox = document.createElement('input');

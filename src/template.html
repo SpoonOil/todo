@@ -4,11 +4,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Task List</title>
 </head>
-<body min-w-[400px]>
-    <head>
-      <h1 class="">To Do</h1>
+<body class = ''>
+    <head class ="flex">
+      <h1 class="max-w-sm m-auto text-center text-3xl">To Do</h1>
     </head>
-    <main class ="">
+    <main class ="flex justify-between">
       <div class="leftPanel">
       </div>
       <div class="content">
@@ -17,14 +17,14 @@
         </ul> 
       </div>
       <div class="rightPanel">
-        <div id="add-task-display" class="add-task-display" >
-          <button type = "button" id = "add-task-button">
+        <div id="add-task-display" class="add-task-display flex flex-col p-8 bg-slate-300 rounded-xl" >
+          <button type = "button" id = "add-task-button" class = "font-bold p-4 bg-slate-400 rounded-lg hover:bg-slate-500 active:bg-slate-300">
             Add Task
           </button>
-          <label for="task-name-input">Task Name</label>
-          <input type="text" name="task-name" id="task-name-input">
-          <label for="task-description-input">Task Description</label>
-          <input type="text" name="task-description-input" id="task-description-input">
+          <label for="task-name-input" class = "p-3">Task Name</label>
+          <input type="text" name="task-name" id="task-name-input" class = "rounded-md">
+          <label for="task-description-input" class = "p-3">Task Description</label>
+          <input type="text" name="task-description-input" id="task-description-input" class = "rounded-md">
         </div>
       </div>
     </main>
