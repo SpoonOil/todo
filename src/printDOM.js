@@ -20,10 +20,7 @@ class DOMHandler {
       close.addEventListener('click', () => {
         this.taskList.removeTask(task.name)
         this.renderTaskList()
-      })
-
-      // placeholder
-      close.style.padding = '5px'
+      });
 
       checkbox.type = 'checkbox'
       checkbox.task = task
