@@ -12,11 +12,15 @@ class Overhead {
 
         this.taskList = taskList;
         this.renderFunction = renderFunction
+        this.nameInput = nameInput
     }
 
     addTask(name, description) {
-        this.taskList.addTask(name, description)
-        this.renderFunction();
+        this.nameInput.reportValidity()
+        if (this.nameInput.checkValidity()) {
+            this.taskList.addTask(name, description)
+            this.renderFunction();
+        }
     }
 
     removeTask(name) {
