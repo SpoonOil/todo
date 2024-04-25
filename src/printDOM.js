@@ -54,8 +54,10 @@ class DOMHandler {
       li.appendChild(close)
 
       if (task.completed == "completed") {
-        li.style.backgroundColor = 'green'
+        addStyles(li, 'bg-slate-100')
         checkbox.checked = true;
+        description.style.textDecoration = "line-through"
+        title.style.textDecoration = "line-through"
       }
       this.ulNode.appendChild(li)
     }
