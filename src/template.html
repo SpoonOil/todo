@@ -4,11 +4,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Task List</title>
   </head>
-  <body class="">
+  <body class="h-full flex flex-col">
     <head class="flex">
       <h1 class="max-w-sm m-auto text-center text-3xl">To Do</h1>
     </head>
-    <main class="flex justify-stretch">
+    <main class="flex flex-1">
       <div class="leftPanel p-5 bg-slate-300 rounded-xl">
         <h1 class = "text-center">Lists</h1>
         <ul id = 'task-lists-display'>
@@ -25,7 +25,7 @@
           </li>
         </ul>
       </div>
-      <div class="rightPanel">
+      <div class="rightPanel bg-slate-300 rounded-xl">
         <div
           id="add-task-display"
           class="add-task-display flex flex-col p-8 bg-slate-300 rounded-xl"

@@ -11,6 +11,10 @@ class DOMHandler {
     this.allLists = taskLists
   }
   renderAllLists() {
+    while (this.tasklistsDisplay.firstChild) {
+      this.tasklistsDisplay.firstChild.remove()
+    }
+
     for (let list of this.allLists) {
       const li = document.createElement('li')
       li.innerText = list.name
@@ -28,9 +32,14 @@ class DOMHandler {
     for (let task of this.currentList.getTasks()) {
       const li = document.createElement('li')
       addTailwindStyleString(li, 'flex gap-4 items-center flex-1 p-8 rounded-lg bg-slate-200')
+
+      const info = document.createElement('div')
+      addTailwindStyleString(info, 'flex-1')
+
       const title = document.createElement('h3')
+
       const description =document.createElement('p')
-      addTailwindStyleString(description, 'flex-1')
+      addTailwindStyleString(description, 'text-sm opacity-70')
 
       const checkbox = document.createElement('input');
       addTailwindStyleString(checkbox, 'appearance-none active:border-0 checked:bg-slate-600 checked:border-1 w-5 h-5 border-2 border-slate-500 bg-white rounded-full')
@@ -59,8 +68,9 @@ class DOMHandler {
       title.innerText = task.name
       description.innerText = task.description
       li.appendChild(checkbox)
-      li.appendChild(title);
-      li.appendChild(description);
+      info.appendChild(title);
+      info.appendChild(description);
+      li.appendChild(info)
       li.appendChild(close)
 
       if (task.completed == "completed") {
