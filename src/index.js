@@ -3,7 +3,7 @@ import './style.css'
 import DOMHandler from './printDOM.js'
 import Overhead from './controller.js'
 
-const test = new TaskList;
+const test = new TaskList('testlist', 'testlist desc');
 const dom = new DOMHandler(document.querySelector('.task-display-list'), test);
 test.addTask("bruh", "this is a test task");
 
