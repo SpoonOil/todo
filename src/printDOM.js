@@ -4,18 +4,28 @@ function addTailwindStyleString(node, tailwindStyleString) {
 }
 
 class DOMHandler {
-  constructor(ulNode, taskList) {
-    this.ulNode = ulNode
-    this.taskList = taskList
+  constructor(tasklistsDisplayNode, tasksDisplayNode, taskList, taskLists) {
+    this.tasklistsDisplay = tasklistsDisplayNode
+    this.tasksDisplay = tasksDisplayNode
+    this.currentList = taskList
+    this.allLists = taskLists
   }
-  
+  renderAllLists() {
+    for (let list of this.allLists) {
+      const li = document.createElement('li')
+      li.innerText = list.name
+      addTailwindStyleString(li, 'bg-slate-200 p-3 rounded-md')
+      this.tasklistsDisplay.appendChild(li)
+    }
+  }
+
   renderTaskList() {
 
-    while (this.ulNode.firstChild) {
-      this.ulNode.firstChild.remove()
+    while (this.tasksDisplay.firstChild) {
+      this.tasksDisplay.firstChild.remove()
     }
 
-    for (let task of this.taskList.getTasks()) {
+    for (let task of this.currentList.getTasks()) {
       const li = document.createElement('li')
       addTailwindStyleString(li, 'flex gap-4 items-center flex-1 p-8 rounded-lg bg-slate-200')
       const title = document.createElement('h3')
@@ -26,11 +36,11 @@ class DOMHandler {
       addTailwindStyleString(checkbox, 'appearance-none active:border-0 checked:bg-slate-600 checked:border-1 w-5 h-5 border-2 border-slate-500 bg-white rounded-full')
 
       const close = document.createElement('button')
-      addTailwindStyleString(close, 'bg-red-200 w-8 h-8 rounded-md font-mono')
+      addTailwindStyleString(close, 'bg-red-200 p-3 w-12 rounded-md align-top')
 
-      close.innerText = 'X' // temp until i render an svg or some shit
+      close.innerText = 'x' // temp until i render an svg or some shit
       close.addEventListener('click', () => {
-        this.taskList.removeTask(task.id)
+        this.currentList.removeTask(task.id)
         this.renderTaskList()
       });
 
@@ -38,10 +48,10 @@ class DOMHandler {
       checkbox.task = task
       checkbox.addEventListener('click', () => {
         if (task.completed == "notCompleted") {
-          this.taskList.completeTask(task.id)
+          this.currentList.completeTask(task.id)
           this.renderTaskList()
         } else {
-          this.taskList.uncompleteTask(task.id)
+          this.currentList.uncompleteTask(task.id)
           this.renderTaskList()
         }
       })
@@ -59,7 +69,7 @@ class DOMHandler {
         description.style.textDecoration = "line-through"
         title.style.textDecoration = "line-through"
       }
-      this.ulNode.appendChild(li)
+      this.tasksDisplay.appendChild(li)
     }
   }
 }
