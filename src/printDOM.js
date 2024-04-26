@@ -30,7 +30,7 @@ class DOMHandler {
 
       close.innerText = 'X'
       close.addEventListener('click', () => {
-        this.taskList.removeTask(task.name)
+        this.taskList.removeTask(task.id)
         this.renderTaskList()
       });
 
@@ -38,10 +38,10 @@ class DOMHandler {
       checkbox.task = task
       checkbox.addEventListener('click', () => {
         if (task.completed == "notCompleted") {
-          task.complete()
+          this.taskList.completeTask(task.id)
           this.renderTaskList()
         } else {
-          task.uncomplete()
+          this.taskList.uncompleteTask(task.id)
           this.renderTaskList()
         }
       })
