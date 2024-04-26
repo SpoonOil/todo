@@ -54,7 +54,7 @@ class DOMHandler {
       li.appendChild(close)
 
       if (task.completed == "completed") {
-        addStyles(li, 'bg-slate-100')
+        addStyles(li, 'bg-slate-100 opacity-50')
         checkbox.checked = true;
         description.style.textDecoration = "line-through"
         title.style.textDecoration = "line-through"
