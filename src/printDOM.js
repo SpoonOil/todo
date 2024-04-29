@@ -18,7 +18,7 @@ class DOMHandler {
     for (let list of this.allLists) {
       const li = document.createElement('li')
       li.innerText = list.name
-      addTailwindStyleString(li, 'bg-slate-200 p-3 rounded-md')
+      addTailwindStyleString(li, 'bg-slate-200 p-3 rounded-md hover:cursor-pointer hover:bg-slate-100 active:bg-slate-400')
       this.tasklistsDisplay.appendChild(li)
     }
   }
