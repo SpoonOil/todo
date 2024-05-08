@@ -21,6 +21,12 @@ class DOMHandler {
       addTailwindStyleString(li, 'bg-slate-200 p-3 rounded-md hover:cursor-pointer hover:bg-slate-100 active:bg-slate-400')
       this.tasklistsDisplay.appendChild(li)
     }
+
+    const addListBtn = document.createElement('li')
+    addListBtn.innerText = "+"
+    addTailwindStyleString(addListBtn, 'bg-slate-400 p-3 text-center rounded-md hover:cursor-pointer hover:bg-slate-500 active:bg-slate-700')
+    this.tasklistsDisplay.appendChild(addListBtn)
+    
   }
 
   renderTaskList() {
