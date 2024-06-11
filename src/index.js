@@ -9,10 +9,12 @@ taskLists.push(test)
 const dom = new DOMHandler(document.getElementById('task-lists-display'), document.querySelector('.task-display-list'), test, taskLists);
 test.addTask("bruh", "this is a test task");
 
-const overhead = new Overhead(document.getElementById('add-task-display'), test, () => {
+const overhead = new Overhead(document.getElementById('add-task-display'), "add-list-button", TaskList, taskLists, test, () => {
     dom.renderTaskList();
     dom.renderAllLists();
 })
+
+overhead.render()
 
 
 

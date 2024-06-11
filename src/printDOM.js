@@ -26,7 +26,7 @@ class DOMHandler {
     addListBtn.innerText = "+"
     addTailwindStyleString(addListBtn, 'bg-slate-400 p-3 text-center rounded-md hover:cursor-pointer hover:bg-slate-500 active:bg-slate-700')
     this.tasklistsDisplay.appendChild(addListBtn)
-    
+    addListBtn.id = "add-list-button"
   }
 
   renderTaskList() {
