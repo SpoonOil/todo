@@ -30,7 +30,10 @@ class TaskList {
     this.latestIdNum++;
     return id;
   }
-
+  getName() {
+    return this.name;
+  }
+  
   getTasks() {
     let completedTasks = [];
     let uncompletedTasks = []

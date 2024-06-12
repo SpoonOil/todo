@@ -87,6 +87,9 @@ class DOMHandler {
       }
       this.tasksDisplay.appendChild(li)
     }
+    const taskNameInput = document.getElementById('tasklist-name-input') 
+    taskNameInput.value = this.currentList.getName(); 
+    
   }
 }
 
