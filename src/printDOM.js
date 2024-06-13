@@ -19,6 +19,9 @@ class DOMHandler {
       const li = document.createElement('li')
       li.innerText = list.name
       addTailwindStyleString(li, 'bg-slate-200 p-3 rounded-md hover:cursor-pointer hover:bg-slate-100 active:bg-slate-400')
+      li.addEventListener("click", () => {
+        this.setCurrentList(li)
+      })
       this.tasklistsDisplay.appendChild(li)
     }
 
@@ -29,6 +32,17 @@ class DOMHandler {
     addListBtn.id = "add-list-button"
   }
 
+  setCurrentList(list) {
+    this.currentList = list;
+  }
+
+  getActiveList() {
+    return this.currentList;
+  }
+  renderFunction() {
+    this.renderTaskList()
+    this.renderAllLists()
+  }
   renderTaskList() {
 
     while (this.tasksDisplay.firstChild) {
@@ -44,7 +58,7 @@ class DOMHandler {
 
       const title = document.createElement('h3')
 
-      const description =document.createElement('p')
+      const description = document.createElement('p')
       addTailwindStyleString(description, 'text-sm opacity-70')
 
       const checkbox = document.createElement('input');
@@ -87,9 +101,9 @@ class DOMHandler {
       }
       this.tasksDisplay.appendChild(li)
     }
-    const taskNameInput = document.getElementById('tasklist-name-input') 
-    taskNameInput.value = this.currentList.getName(); 
-    
+    const taskNameInput = document.getElementById('tasklist-name-input')
+    taskNameInput.value = this.currentList.getName();
+
   }
 }
 

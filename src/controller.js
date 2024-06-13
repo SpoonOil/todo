@@ -1,20 +1,21 @@
 class Overhead {
-    constructor(addDisplayNode, addListId, listclass, listsArray, taskList, renderFunction) {
-        renderFunction();
+    constructor(addDisplayNode, addListId, listclass, listsArray, taskList, domObject) {
+        domObject.renderFunction();
         const button = addDisplayNode.querySelector('#add-task-button')
         const nameInput = addDisplayNode.querySelector('#task-name-input')
         const descriptionInput = addDisplayNode.querySelector('#task-description-input')
-        button.addEventListener('click', (e) => {
+        button.addEventListener('click', () => {
             console.log('clicked');
             this.addTask(nameInput.value, descriptionInput.value);
         })
 
         this.taskList = taskList;
-        this.renderFunction = renderFunction
+        this.renderFunction = domObject.renderFunction
         this.nameInput = nameInput
         this.listclass = listclass
         this.listsArray = listsArray
         this.addListId = addListId
+        this.domObject = domObject
     }
 
     addTask(name, description) {
@@ -26,7 +27,7 @@ class Overhead {
     }
 
     render() {
-        this.renderFunction()
+        this.domObject.renderFunction()
         this.addTasklistAddButton()
     }
 
@@ -48,6 +49,9 @@ class Overhead {
         this.listsArray.push(list)
         console.log(this.listsArray)
         this.render();
+    }
+    setActiveList(list) {
+        console.table(list)
     }
 }
 
