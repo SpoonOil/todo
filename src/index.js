@@ -1,4 +1,4 @@
-import { Tasks, TaskList } from './tasks.js'
+import { Task, TaskList } from './tasks.js'
 import './style.css'
 import DOMHandler from './printDOM.js'
 import Overhead from './controller.js'

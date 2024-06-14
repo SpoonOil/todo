@@ -33,7 +33,7 @@ class TaskList {
   getName() {
     return this.name;
   }
-  
+
   getTasks() {
     let completedTasks = [];
     let uncompletedTasks = []

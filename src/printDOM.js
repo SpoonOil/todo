@@ -20,7 +20,7 @@ class DOMHandler {
       li.innerText = list.name
       addTailwindStyleString(li, 'bg-slate-200 p-3 rounded-md hover:cursor-pointer hover:bg-slate-100 active:bg-slate-400')
       li.addEventListener("click", () => {
-        this.setCurrentList(li)
+        this.setCurrentList(list)
       })
       this.tasklistsDisplay.appendChild(li)
     }
@@ -34,6 +34,7 @@ class DOMHandler {
 
   setCurrentList(list) {
     this.currentList = list;
+    this.renderFunction();
   }
 
   getActiveList() {
@@ -48,7 +49,7 @@ class DOMHandler {
     while (this.tasksDisplay.firstChild) {
       this.tasksDisplay.firstChild.remove()
     }
-
+    console.log(this.currentList)
     for (let task of this.currentList.getTasks()) {
       const li = document.createElement('li')
       addTailwindStyleString(li, 'flex gap-4 items-center flex-1 p-8 rounded-lg bg-slate-200')

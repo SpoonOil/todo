@@ -5,7 +5,6 @@ class Overhead {
         const nameInput = addDisplayNode.querySelector('#task-name-input')
         const descriptionInput = addDisplayNode.querySelector('#task-description-input')
         button.addEventListener('click', () => {
-            console.log('clicked');
             this.addTask(nameInput.value, descriptionInput.value);
         })
 
@@ -19,10 +18,11 @@ class Overhead {
     }
 
     addTask(name, description) {
+        this.updateActiveList()
         this.nameInput.reportValidity()
         if (this.nameInput.checkValidity()) {
             this.taskList.addTask(name, description)
-            this.renderFunction();
+            this.domObject.renderFunction();
         }
     }
 
@@ -32,27 +32,31 @@ class Overhead {
     }
 
     removeTask(name) {
+        this.updateActiveList()
         this.taskList.removeTask(name)
-        this.renderFunction();
+        this.domObject.renderFunction();
     }
 
     addTasklistAddButton() {
         this.taskListAddButton = document.getElementById(this.addListId)
-        console.log(this.taskListAddButton)
         this.taskListAddButton.addEventListener("click", () => {
-            this.addTaskList("list", "no description")
+            let list = new this.listclass("newlist", "newdesc")
+            this.addTaskList(list)
+            this.domObject.setCurrentList(list)
+            this.render()
         })
     }
 
-    addTaskList(name, description) {
-        let list = new this.listclass(name, description)
+    addTaskList(list) {
         this.listsArray.push(list)
         console.log(this.listsArray)
         this.render();
     }
-    setActiveList(list) {
-        console.table(list)
+    updateActiveList() {
+        const list = this.domObject.getActiveList()
+        this.taskList = list
     }
 }
 
 export default Overhead
+
