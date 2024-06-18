@@ -15,6 +15,22 @@ class Overhead {
         this.listsArray = listsArray
         this.addListId = addListId
         this.domObject = domObject
+        this.renameListButton = undefined;
+        this.renameListInput = "none";
+    }
+
+    updateListName(input) {
+        const list = this.domObject.getActiveList();
+        list.setName(input.value)
+    }
+
+    setRenameListNodes(buttonNode, nameInput) {
+        this.renameListButton = buttonNode;
+        this.renameListInput = nameInput;
+        this.renameListButton.addEventListener("click", () => {
+            this.updateListName(this.renameListInput);
+            this.render();
+        })
     }
 
     addTask(name, description) {

@@ -11,6 +11,8 @@ test.addTask("bruh", "this is a test task");
 
 const overhead = new Overhead(document.getElementById('add-task-display'), "add-list-button", TaskList, taskLists, test, dom)
 
+overhead.setRenameListNodes(document.getElementById('list-name-change-button'), document.getElementById('tasklist-name-input'));
+
 overhead.render()
 
 

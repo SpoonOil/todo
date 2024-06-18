@@ -34,6 +34,10 @@ class TaskList {
     return this.name;
   }
 
+  setName(name) {
+    this.name = name;
+  }
+
   getTasks() {
     let completedTasks = [];
     let uncompletedTasks = []
