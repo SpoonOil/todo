@@ -24,6 +24,15 @@ class Overhead {
         list.setName(input.value)
     }
 
+    setDeleteListNode(node) {
+        node.addEventListener("click", () => {
+            this.deleteCurrentList()
+        })
+    }
+
+    deleteCurrentList() {
+        this.removeTaskList(this.domObject.getActiveList())
+    }
     setRenameListNodes(buttonNode, nameInput) {
         this.renameListButton = buttonNode;
         this.renameListInput = nameInput;
@@ -65,7 +74,12 @@ class Overhead {
 
     addTaskList(list) {
         this.listsArray.push(list)
-        console.log(this.listsArray)
+        this.render();
+    }
+
+    removeTaskList(list) {
+        this.listsArray.splice(this.listsArray.indexOf(list), 1)
+        this.domObject.setCurrentList(this.listsArray[0]);
         this.render();
     }
     updateActiveList() {

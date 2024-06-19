@@ -40,16 +40,29 @@ class DOMHandler {
   getActiveList() {
     return this.currentList;
   }
+
   renderFunction() {
     this.renderTaskList()
     this.renderAllLists()
   }
   renderTaskList() {
 
+
     while (this.tasksDisplay.firstChild) {
       this.tasksDisplay.firstChild.remove()
     }
-    console.log(this.currentList)
+
+    const taskNameInput = document.getElementById('tasklist-name-input')
+    const taskInfo = document.querySelector('.tasklist-info')
+    if (this.currentList) {
+      taskNameInput.value = this.currentList.getName();
+      taskInfo.style.opacity = 1;
+    } else {
+      taskNameInput.value = ""
+      taskInfo.style.opacity = 0.2;
+      return;
+    }
+
     for (let task of this.currentList.getTasks()) {
       const li = document.createElement('li')
       addTailwindStyleString(li, 'flex gap-4 items-center flex-1 p-8 rounded-lg bg-slate-200')
@@ -102,8 +115,7 @@ class DOMHandler {
       }
       this.tasksDisplay.appendChild(li)
     }
-    const taskNameInput = document.getElementById('tasklist-name-input')
-    taskNameInput.value = this.currentList.getName();
+
 
   }
 }

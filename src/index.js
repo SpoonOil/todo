@@ -13,6 +13,7 @@ const overhead = new Overhead(document.getElementById('add-task-display'), "add-
 
 overhead.setRenameListNodes(document.getElementById('list-name-change-button'), document.getElementById('tasklist-name-input'));
 
+overhead.setDeleteListNode(document.getElementById("delete-list-button"));
 overhead.render()
 
 
