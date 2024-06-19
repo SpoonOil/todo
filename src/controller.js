@@ -74,6 +74,9 @@ class Overhead {
 
     addTaskList(list) {
         this.listsArray.push(list)
+        if (this.listsArray.length == 1) {
+            this.domObject.setCurrentList(this.listsArray[0])
+        }
         this.render();
     }
 
