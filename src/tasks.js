@@ -1,11 +1,15 @@
+import { format, compareAsc, constructNow } from "date-fns";
 class Task {
-  constructor(name, description, taskList) {
+  constructor(name, description, taskList, dueDate) {
     this.name = name;
     this.description = description;
     this.completed = "notCompleted";
     this.parentList = taskList.tasks;
     this.parent = taskList;
     this.id = this.parent.getNextId();
+    this.dueDate = dueDate
+    this.createDate = format(Date.now(), "MM/dd/yyyy")
+    console.log(this.createDate)
   }
 
   complete() {
