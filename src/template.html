@@ -25,18 +25,13 @@
           </li>
         </ul>
       </div>
-      <div class="rightPanel bg-slate-300 rounded-xl">
+      
+    </main>
+    <div class="bottomPanel bg-slate-300 rounded-xl">
         <div
           id="add-task-display"
-          class="add-task-display flex flex-col p-8 bg-slate-300 rounded-xl"
+          class="add-task-display flex items-center p-8 bg-slate-300 rounded-xl"
         >
-          <button
-            type="button"
-            id="add-task-button"
-            class="font-bold p-4 bg-slate-400 rounded-lg hover:bg-slate-500 active:bg-slate-300"
-          >
-            Add Task
-          </button>
           <label for="task-name-input" class="p-3">Task</label>
           <input
             type="text"
@@ -54,9 +49,16 @@
             name="task-description-input"
             id="task-description-input"
             class="rounded-md"
-          />
+          /> 
+          <button
+            type="button"
+            id="add-task-button"
+            class="font-bold p-4 bg-slate-400 rounded-lg hover:bg-slate-500 active:bg-slate-300"
+          >
+            Add Task
+          </button>
         </div>
-        <div class="tasklist-info flex flex-col p-8 bg-slate-300 rounded-xl">
+        <div class="tasklist-info hidden flex flex-col p-8 bg-slate-300 rounded-xl">
           <div class="tasklist-sidebar-header flex justify-between items-center">
             <h1>TaskList <span class="list-title"></span></h1>
             <button id = "delete-list-button" class = "text-center p-2 m-3 rounded-md bg-red-400">Delete</button>
@@ -68,6 +70,5 @@
           <button class = "text-center p-2 m-3 rounded-md bg-slate-400" id = "list-name-change-button" type="button">Change Name</button>
         </div>
       </div>
-    </main>
   </body>
 </html>
