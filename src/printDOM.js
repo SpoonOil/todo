@@ -1,3 +1,5 @@
+import { TaskList } from "./tasks.js"
+
 function addTailwindStyleString(node, tailwindStyleString) {
   const classes = tailwindStyleString.split(' ')
   node.classList.add(...classes)
@@ -9,7 +11,54 @@ class DOMHandler {
     this.tasksDisplay = tasksDisplayNode
     this.currentList = taskList
     this.allLists = taskLists
+    this.quickbarMode = "addTask"
+    this.quickbarNodes = []
   }
+  bindAddTaskDisplay(node) {
+    this.addTaskDisplay = node
+    this.updateQuickbarNodes
+  }
+
+  bindEditListDisplay(node) {
+    this.editListDisplay = node
+    this.updateQuickbarNodes
+  }
+
+  updateQuickbarNodes() {
+    const nodes = []
+    nodes.push(this.addTaskDisplay)
+    nodes.push(this.editListDisplay)
+    this.quickbarNodes = nodes
+  }
+
+  setQuickbarMode(modeString) {
+    this.quickbarMode = modeString
+    this.updateQuickbarDisplay()
+  }
+
+  updateQuickbarDisplay() {
+    console.log(this.quickbarMode)
+    switch (this.quickbarMode) {
+      case "addTask":
+        this.addTaskDisplay.classList.remove("hidden")
+        this.hideOtherNodes(this.addTaskDisplay)
+        break;
+      case "editList":
+        this.editListDisplay.classList.remove("hidden")
+        this.hideOtherNodes(this.editListDisplay)
+        break;
+    }
+
+  }
+
+  hideOtherNodes(exceptionNode) {
+    for (let node of this.quickbarNodes) {
+      if (node == exceptionNode) { continue }
+      node.classList.add("hidden")
+    }
+  }
+
+
   renderAllLists() {
     while (this.tasklistsDisplay.firstChild) {
       this.tasklistsDisplay.firstChild.remove()
@@ -42,6 +91,7 @@ class DOMHandler {
   }
 
   renderFunction() {
+    this.updateQuickbarDisplay()
     this.renderTaskList()
     this.renderAllLists()
   }

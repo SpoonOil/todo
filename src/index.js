@@ -8,6 +8,10 @@ const taskLists = []
 taskLists.push(test)
 const dom = new DOMHandler(document.getElementById('task-lists-display'), document.querySelector('.task-display-list'), test, taskLists);
 test.addTask("bruh", "this is a test task");
+dom.bindAddTaskDisplay(document.querySelector("#add-task-display"))
+dom.bindEditListDisplay(document.querySelector(".tasklist-info"))
+// dom.bindEditListDone(document.getElementById("edit-list-submit"))
+dom.setQuickbarMode("editList");
 
 const overhead = new Overhead(document.getElementById('add-task-display'), "add-list-button", TaskList, taskLists, test, dom)
 

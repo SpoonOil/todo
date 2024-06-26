@@ -30,7 +30,7 @@
     <div class="bottomPanel bg-slate-300 rounded-xl">
         <div
           id="add-task-display"
-          class="add-task-display flex items-center p-8 bg-slate-300 rounded-xl"
+          class="add-task-display hidden flex justify-center items-center p-8 bg-slate-300 rounded-xl"
         >
           <label for="task-name-input" class="p-3">Task</label>
           <input
@@ -60,7 +60,7 @@
         </div>
         <div class="tasklist-info hidden flex flex-col p-8 bg-slate-300 rounded-xl">
           <div class="tasklist-sidebar-header flex justify-between items-center">
-            <h1>TaskList <span class="list-title"></span></h1>
+            <h1>List Settings<span class="list-title"></span></h1>
             <button id = "delete-list-button" class = "text-center p-2 m-3 rounded-md bg-red-400">Delete</button>
           </div>
           <div class="tasklist-sidebar-header flex justify-between items-center gap-2">
@@ -68,6 +68,7 @@
             <input class = "rounded-md p-1" type="text" name="tasklist-name" id="tasklist-name-input">
           </div>
           <button class = "text-center p-2 m-3 rounded-md bg-slate-400" id = "list-name-change-button" type="button">Change Name</button>
+          <button id="edit-list-submit" class = "text-center p-2 m-3 rounded-md bg-slate-400">Done</button>
         </div>
       </div>
   </body>
