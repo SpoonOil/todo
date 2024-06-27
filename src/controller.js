@@ -74,7 +74,8 @@ class Overhead {
 
     removeTaskList(list) {
         this.listsArray.splice(this.listsArray.indexOf(list), 1)
-            .domObject.setCurrentList(this.listsArray[0]);
+        this.domObject.setCurrentList(this.listsArray[0]);
+        this.domObject.setQuickbarMode("addTask");
         this.render();
     }
     updateActiveList() {

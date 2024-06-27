@@ -67,10 +67,26 @@ class DOMHandler {
       const li = document.createElement('li')
       li.innerText = list.name
       if (list == this.currentList) {
-        addTailwindStyleString(li, 'bg-slate-500 p-3 rounded-md hover:cursor-pointer hover:bg-slate-100 active:bg-slate-400')
+        addTailwindStyleString(li, 'bg-slate-200 p-3 rounded-md flex items-center hover:cursor-pointer hover:bg-slate-100 active:bg-slate-400')
+
+        const editButton = document.createElement("button");
+        const editIcon = document.createElement("span");
+        editIcon.className = "material-symbols-outlined";
+        editIcon.innerText = "edit"
+
+        editButton.appendChild(editIcon)
+
+        addTailwindStyleString(editButton, "bg-slate-300 ms-2 p-1 rounded-md hover:cursor-pointer hover:bg-slate-100 active:bg-slate-300");
+        editButton.addEventListener("click", () => {
+          this.setQuickbarMode("editList")
+        })
+
+        li.appendChild(editButton);
+
       } else {
-        addTailwindStyleString(li, 'bg-slate-200 p-3 rounded-md hover:cursor-pointer hover:bg-slate-100 active:bg-slate-400')
+        addTailwindStyleString(li, 'bg-slate-200 p-3 rounded-md flex items-center hover:cursor-pointer hover:bg-slate-100 active:bg-slate-400')
       }
+
       li.addEventListener("click", () => {
         this.setCurrentList(list)
       })
