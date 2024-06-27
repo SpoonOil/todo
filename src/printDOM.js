@@ -67,7 +67,7 @@ class DOMHandler {
       const li = document.createElement('li')
       li.innerText = list.name
       if (list == this.currentList) {
-        addTailwindStyleString(li, 'bg-slate-200 p-3 rounded-md flex items-center hover:cursor-pointer hover:bg-slate-100 active:bg-slate-400')
+        addTailwindStyleString(li, 'bg-slate-200 p-3 rounded-md flex items-center justify-between hover:cursor-pointer hover:bg-slate-100 active:bg-slate-400')
 
         const editButton = document.createElement("button");
         const editIcon = document.createElement("span");
@@ -84,7 +84,7 @@ class DOMHandler {
         li.appendChild(editButton);
 
       } else {
-        addTailwindStyleString(li, 'bg-slate-200 p-3 rounded-md flex items-center hover:cursor-pointer hover:bg-slate-100 active:bg-slate-400')
+        addTailwindStyleString(li, 'bg-slate-200 p-3 rounded-md flex items-center justify-between hover:cursor-pointer hover:bg-slate-100 active:bg-slate-400')
       }
 
       li.addEventListener("click", () => {

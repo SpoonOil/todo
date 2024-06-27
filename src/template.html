@@ -10,8 +10,8 @@
       <h1 class="max-w-sm m-auto text-center text-3xl">To Do</h1>
     </head>
     <main class="flex flex-1">
-      <div class="leftPanel p-5 bg-slate-300 rounded-xl">
-        <h1 class = "text-center">Lists</h1>
+      <div class="leftPanel p-5 flex-none w-52 bg-slate-300 rounded-xl">
+        <h1 class = "text-center w-full">Lists</h1>
         <ul id = 'task-lists-display'>
 
         </ul>
@@ -26,50 +26,53 @@
           </li>
         </ul>
       </div>
-      
+
     </main>
     <div class="bottomPanel bg-slate-300 rounded-xl">
-        <div
-          id="add-task-display"
-          class="add-task-display hidden flex justify-center items-center p-8 bg-slate-300 rounded-xl"
+      <div
+        id="add-task-display"
+        class="add-task-display hidden flex justify-center items-center p-8 bg-slate-300 rounded-xl"
+      >
+        <label for="task-name-input" class="p-3">Task</label>
+        <input
+          type="text"
+          name="task-name"
+          id="task-name-input"
+          class="rounded-md"
+          minlength="1"
+          required
+        />
+        <label for="task-description-input" class="p-3"
+        >Task Description</label
         >
-          <label for="task-name-input" class="p-3">Task</label>
-          <input
-            type="text"
-            name="task-name"
-            id="task-name-input"
-            class="rounded-md"
-            minlength="1"
-            required
-          />
-          <label for="task-description-input" class="p-3"
-            >Task Description</label
-          >
-          <input
-            type="text"
-            name="task-description-input"
-            id="task-description-input"
-            class="rounded-md"
-          /> 
-          <button
-            type="button"
-            id="add-task-button"
-            class="font-bold p-4 bg-slate-400 rounded-lg hover:bg-slate-500 active:bg-slate-300"
-          >
-            Add Task
-          </button>
+        <input
+          type="text"
+          name="task-description-input"
+          id="task-description-input"
+          class="rounded-md"
+        /> 
+        <button
+          type="button"
+          id="add-task-button"
+          class="font-bold p-4 bg-slate-400 rounded-lg hover:bg-slate-500 active:bg-slate-300"
+        >
+          Add Task
+        </button>
+      </div>
+      <div class="tasklist-info hidden flex flex-col p-8 bg-slate-300 rounded-xl">
+        <div class="tasklist-sidebar-header flex justify-between items-center">
+          <h1 class = "text-center" >List Settings</h1>
         </div>
-        <div class="tasklist-info hidden flex flex-col p-8 bg-slate-300 rounded-xl">
-          <div class="tasklist-sidebar-header flex justify-between items-center">
-            <h1>List Settings<span class="list-title"></span></h1>
-            <button id = "delete-list-button" class = "text-center p-2 m-3 rounded-md bg-red-400">Delete</button>
-          </div>
-          <div class="tasklist-sidebar-header flex justify-between items-center gap-2">
+        <div class="tasklist-edit-inputs flex">
+          <div class="flex justify-between items-center gap-2">
             <label for="tasklist-name-input">Name</label>
             <input class = "rounded-md p-1" type="text" name="tasklist-name" id="tasklist-name-input">
           </div>
+          <div class="flex-1"></div>
           <button class = "text-center p-2 m-3 rounded-md bg-slate-400" id = "list-name-change-button" type="button">Done</button>
+          <button id = "delete-list-button" class = "text-center p-2 m-3 rounded-md bg-red-400">Delete</button>
         </div>
       </div>
+    </div>
   </body>
 </html>
