@@ -11,7 +11,7 @@ test.addTask("bruh", "this is a test task");
 dom.bindAddTaskDisplay(document.querySelector("#add-task-display"))
 dom.bindEditListDisplay(document.querySelector(".tasklist-info"))
 // dom.bindEditListDone(document.getElementById("edit-list-submit"))
-dom.setQuickbarMode("editList");
+dom.setQuickbarMode("addTask");
 
 const overhead = new Overhead(document.getElementById('add-task-display'), "add-list-button", TaskList, taskLists, test, dom)
 

@@ -39,6 +39,7 @@ class Overhead {
         this.renameListButton.addEventListener("click", () => {
             this.updateListName(this.renameListInput);
             this.render();
+            this.domObject.setQuickbarMode("addTask");
         })
     }
 
@@ -53,23 +54,12 @@ class Overhead {
 
     render() {
         this.domObject.renderFunction()
-        this.addTasklistAddButton()
     }
 
     removeTask(name) {
         this.updateActiveList()
         this.taskList.removeTask(name)
         this.domObject.renderFunction();
-    }
-
-    addTasklistAddButton() {
-        this.taskListAddButton = document.getElementById(this.addListId)
-        this.taskListAddButton.addEventListener("click", () => {
-            let list = new this.listclass("newlist", "newdesc")
-            this.addTaskList(list)
-            this.domObject.setCurrentList(list)
-            this.render()
-        })
     }
 
     addTaskList(list) {
@@ -82,14 +72,19 @@ class Overhead {
 
     removeTaskList(list) {
         this.listsArray.splice(this.listsArray.indexOf(list), 1)
-        this.domObject.setCurrentList(this.listsArray[0]);
+            .domObject.setCurrentList(this.listsArray[0]);
         this.render();
     }
     updateActiveList() {
         const list = this.domObject.getActiveList()
-        this.taskList = list
+        this.taskList = list;
     }
 }
 
-export default Overhead
+
+export default Overhead;
+
+
+
+
 

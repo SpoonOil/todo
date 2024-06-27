@@ -1,4 +1,4 @@
-import { TaskList } from "./tasks.js"
+import { Task, TaskList } from "./tasks.js"
 
 function addTailwindStyleString(node, tailwindStyleString) {
   const classes = tailwindStyleString.split(' ')
@@ -16,19 +16,19 @@ class DOMHandler {
   }
   bindAddTaskDisplay(node) {
     this.addTaskDisplay = node
-    this.updateQuickbarNodes
+    this.updateQuickbarNodes()
   }
 
   bindEditListDisplay(node) {
     this.editListDisplay = node
-    this.updateQuickbarNodes
+    this.updateQuickbarNodes()
   }
 
   updateQuickbarNodes() {
     const nodes = []
     nodes.push(this.addTaskDisplay)
     nodes.push(this.editListDisplay)
-    this.quickbarNodes = nodes
+    this.quickbarNodes = [...nodes]
   }
 
   setQuickbarMode(modeString) {
@@ -52,7 +52,10 @@ class DOMHandler {
   }
 
   hideOtherNodes(exceptionNode) {
+    console.log(this.quickbarNodes);
     for (let node of this.quickbarNodes) {
+      console.log("hi")
+      console.log(this.quickbarNodes, node)
       if (node == exceptionNode) { continue }
       node.classList.add("hidden")
     }
@@ -79,6 +82,14 @@ class DOMHandler {
     addTailwindStyleString(addListBtn, 'bg-slate-400 p-3 text-center rounded-md hover:cursor-pointer hover:bg-slate-500 active:bg-slate-700')
     this.tasklistsDisplay.appendChild(addListBtn)
     addListBtn.id = "add-list-button"
+
+    addListBtn.addEventListener("click", () => {
+      const newList = new TaskList("New List " + this.allLists.length, "Description");
+      this.allLists.push(newList)
+      this.setCurrentList(newList)
+      this.setQuickbarMode("editList");
+      this.renderFunction();
+    })
   }
 
   setCurrentList(list) {
