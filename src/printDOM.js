@@ -37,7 +37,6 @@ class DOMHandler {
   }
 
   updateQuickbarDisplay() {
-    console.log(this.quickbarMode)
     switch (this.quickbarMode) {
       case "addTask":
         this.addTaskDisplay.classList.remove("hidden")
@@ -52,10 +51,7 @@ class DOMHandler {
   }
 
   hideOtherNodes(exceptionNode) {
-    console.log(this.quickbarNodes);
     for (let node of this.quickbarNodes) {
-      console.log("hi")
-      console.log(this.quickbarNodes, node)
       if (node == exceptionNode) { continue }
       node.classList.add("hidden")
     }
@@ -70,7 +66,11 @@ class DOMHandler {
     for (let list of this.allLists) {
       const li = document.createElement('li')
       li.innerText = list.name
-      addTailwindStyleString(li, 'bg-slate-200 p-3 rounded-md hover:cursor-pointer hover:bg-slate-100 active:bg-slate-400')
+      if (list == this.currentList) {
+        addTailwindStyleString(li, 'bg-slate-500 p-3 rounded-md hover:cursor-pointer hover:bg-slate-100 active:bg-slate-400')
+      } else {
+        addTailwindStyleString(li, 'bg-slate-200 p-3 rounded-md hover:cursor-pointer hover:bg-slate-100 active:bg-slate-400')
+      }
       li.addEventListener("click", () => {
         this.setCurrentList(list)
       })

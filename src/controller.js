@@ -6,6 +6,8 @@ class Overhead {
         const descriptionInput = addDisplayNode.querySelector('#task-description-input')
         button.addEventListener('click', () => {
             this.addTask(nameInput.value, descriptionInput.value);
+            nameInput.value = "";
+            descriptionInput.value = "";
         })
 
         this.taskList = taskList;
