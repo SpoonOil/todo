@@ -60,7 +60,7 @@
 
         </div>  
 
-        <div id="task-extras-input" class = "flex">
+        <div id="task-extras-input" class = "flex w-full gap-4 justify-center">
           <div id="task-priority-container">
             <label for="task-priority-select">Priority</label>
             <select name="task-priority" class = "p-2" id="task-priority-select">
@@ -70,23 +70,25 @@
               <option value="veryHigh">Very High</option>
             </select>
           </div>
-          <div id="task-deadline-container">
-            <label for="task-deadline-checkbox">Deadline?</label>
-            <input type="checkbox" name="deadline-checkbox" id="task-deadline-checkbox">
-            <div class="deadline-date-container flex">
+          <div id="task-deadline-container" class = "flex flex-col items-center justify-between">
+            <div class="deadline-toggle-container flex gap-3">
+              <label for="task-deadline-checkbox">Deadline?</label>
+              <input type="checkbox" name="deadline-checkbox" id="task-deadline-checkbox">
+
+            </div>   
+            <div class="deadline-date-container flex items-center gap-3">
 
               <label for="year-select">Year</label>
-              <select name="year-select" id="year-select">
+              <select name="year-select" class = "p-2" id="year-select">
 
               </select>
 
               <label for="month-select">Month</label>
-              <select name="month-select" id="month-select">
+              <select name="month-select" class = "p-2" id="month-select">
 
               </select>
-
               <label for="day-select">Day</label>
-              <select name="day-select" id="day-select">
+              <select name="day-select" class = "p-2" id="day-select">
 
               </select>
             </div>

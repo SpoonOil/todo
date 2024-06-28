@@ -114,10 +114,27 @@ class DOMHandler {
   }
 
   insertDeadlineOptions() {
+    const deadDateCont = document.querySelector(".deadline-date-container")
+    const deadlineToggle = document.querySelector("#task-deadline-checkbox")
     const deadlineParent = this.taskDeadlineDisplay;
     const daySelect = deadlineParent.querySelector("#day-select");
     const monthSelect = deadlineParent.querySelector("#month-select");
     const yearSelect = deadlineParent.querySelector("#year-select");
+
+    deadlineToggle.addEventListener("click", () => {
+      this.renderFunction()
+    })
+    if (!deadlineToggle.checked) {
+      deadDateCont.style.opacity = 0.4
+      daySelect.disabled = true;
+      monthSelect.disabled = true;
+      yearSelect.disabled = true;
+    } else {
+      deadDateCont.style.opacity = 1;
+      daySelect.disabled = false;
+      monthSelect.disabled = false;
+      yearSelect.disabled = false;
+    }
 
     yearSelect.addEventListener("change", () => {
       this.renderFunction()
@@ -133,6 +150,7 @@ class DOMHandler {
         const year = 2024 + i
         const yearOption = document.createElement("option")
         yearOption.innerText = year
+        yearOption.classList.add("p-3")
         yearSelect.rendered = true
         yearSelect.appendChild(yearOption)
       }
@@ -142,6 +160,7 @@ class DOMHandler {
       for (let month of ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]) {
         const monthOption = document.createElement("option")
         monthOption.innerText = month;
+        monthOption.classList.add("p-3")
         monthSelect.rendered = true;
         monthSelect.appendChild(monthOption)
       }
@@ -165,6 +184,7 @@ class DOMHandler {
     for (let day = 0; day <= daysInMonth; day++) {
       const dayOption = document.createElement("option");
       dayOption.innerText = day
+      dayOption.classList.add("p-3");
       daySelect.appendChild(dayOption)
     }
 
