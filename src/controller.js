@@ -1,5 +1,5 @@
 class Overhead {
-    constructor(addDisplayNode, addListId, listclass, listsArray, taskList, domObject) {
+    constructor(addDisplayNode, listclass, listsArray, taskList, domObject) {
         domObject.renderFunction();
         const button = addDisplayNode.querySelector('#add-task-button')
         const nameInput = addDisplayNode.querySelector('#task-name-input')
@@ -15,7 +15,6 @@ class Overhead {
         this.nameInput = nameInput
         this.listclass = listclass
         this.listsArray = listsArray
-        this.addListId = addListId
         this.domObject = domObject
         this.renameListButton = undefined;
         this.renameListInput = "none";

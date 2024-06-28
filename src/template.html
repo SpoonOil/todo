@@ -31,33 +31,67 @@
     <div class="bottomPanel bg-slate-300 rounded-xl">
       <div
         id="add-task-display"
-        class="add-task-display hidden flex justify-center items-center p-8 bg-slate-300 rounded-xl"
+        class="add-task-display hidden flex flex-col justify-center items-center p-8 bg-slate-300 rounded-xl"
       >
-        <label for="task-name-input" class="p-3">Task</label>
-        <input
-          type="text"
-          name="task-name"
-          id="task-name-input"
-          class="rounded-md"
-          minlength="1"
-          required
-        />
-        <label for="task-description-input" class="p-3"
-        >Task Description</label
-        >
-        <input
-          type="text"
-          name="task-description-input"
-          id="task-description-input"
-          class="rounded-md"
-        /> 
-        <button
-          type="button"
-          id="add-task-button"
-          class="font-bold p-4 bg-slate-400 rounded-lg hover:bg-slate-500 active:bg-slate-300"
-        >
-          Add Task
-        </button>
+        <div class="add-task-main">
+          <label for="task-name-input" class="p-3">Task</label>
+          <input type="text" name="task-name"
+            id="task-name-input"
+            class="rounded-md"
+            minlength="1"
+            required
+          />
+          <label for="task-description-input" class="p-3"
+          >Task Description</label
+          >
+          <input
+            type="text"
+            name="task-description-input"
+            id="task-description-input"
+            class="rounded-md"
+          /> 
+          <button
+            type="button"
+            id="add-task-button"
+            class="font-bold p-4 bg-slate-400 rounded-lg hover:bg-slate-500 active:bg-slate-300"
+          >
+            Add Task
+          </button>
+
+        </div>  
+
+        <div id="task-extras-input" class = "flex">
+          <div id="task-priority-container">
+            <label for="task-priority-select">Priority</label>
+            <select name="task-priority" class = "p-2" id="task-priority-select">
+              <option value="normal">Normal</option>
+              <option value="high">High</option>
+              <option value="low">Low</option>
+              <option value="veryHigh">Very High</option>
+            </select>
+          </div>
+          <div id="task-deadline-container">
+            <label for="task-deadline-checkbox">Deadline?</label>
+            <input type="checkbox" name="deadline-checkbox" id="task-deadline-checkbox">
+            <div class="deadline-date-container flex">
+
+              <label for="year-select">Year</label>
+              <select name="year-select" id="year-select">
+
+              </select>
+
+              <label for="month-select">Month</label>
+              <select name="month-select" id="month-select">
+
+              </select>
+
+              <label for="day-select">Day</label>
+              <select name="day-select" id="day-select">
+
+              </select>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="tasklist-info hidden flex flex-col p-8 bg-slate-300 rounded-xl">
         <div class="tasklist-sidebar-header flex justify-between items-center">

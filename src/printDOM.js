@@ -14,6 +14,11 @@ class DOMHandler {
     this.quickbarMode = "addTask"
     this.quickbarNodes = []
   }
+
+  bindTaskDeadlineDisplay(node) {
+    this.taskDeadlineDisplay = node;
+  }
+
   bindAddTaskDisplay(node) {
     this.addTaskDisplay = node
     this.updateQuickbarNodes()
@@ -108,6 +113,65 @@ class DOMHandler {
     })
   }
 
+  insertDeadlineOptions() {
+    const deadlineParent = this.taskDeadlineDisplay;
+    const daySelect = deadlineParent.querySelector("#day-select");
+    const monthSelect = deadlineParent.querySelector("#month-select");
+    const yearSelect = deadlineParent.querySelector("#year-select");
+
+    yearSelect.addEventListener("change", () => {
+      this.renderFunction()
+    })
+
+    monthSelect.addEventListener("change", () => {
+      this.renderFunction()
+    })
+    const maxYears = 10
+
+    if (yearSelect.rendered === undefined) { //hacky TODO: extract this to something that runs on startup
+      for (let i = 0; i <= maxYears; i++) {
+        const year = 2024 + i
+        const yearOption = document.createElement("option")
+        yearOption.innerText = year
+        yearSelect.rendered = true
+        yearSelect.appendChild(yearOption)
+      }
+    }
+
+    if (monthSelect.rendered === undefined) {
+      for (let month of ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]) {
+        const monthOption = document.createElement("option")
+        monthOption.innerText = month;
+        monthSelect.rendered = true;
+        monthSelect.appendChild(monthOption)
+      }
+    }
+
+    while (daySelect.firstChild) {
+      daySelect.firstChild.remove()
+    }
+
+
+    const leap = !(yearSelect.value % 4)
+    const month = monthSelect.value;
+    let daysInMonth = 30 // baseline
+    if (["Jan", "Mar", "May", "July", "Aug", "Oct", "Dec"].includes(month)) {
+      daysInMonth += 1
+    } else if (month == "Feb") {
+      daysInMonth--;
+      leap ? daysInMonth : daysInMonth--;
+    }
+
+    for (let day = 0; day <= daysInMonth; day++) {
+      const dayOption = document.createElement("option");
+      dayOption.innerText = day
+      daySelect.appendChild(dayOption)
+    }
+
+
+    console.log(leap)
+  }
+
   setCurrentList(list) {
     this.currentList = list;
     this.renderFunction();
@@ -121,6 +185,7 @@ class DOMHandler {
     this.updateQuickbarDisplay()
     this.renderTaskList()
     this.renderAllLists()
+    this.insertDeadlineOptions()
   }
   renderTaskList() {
 
