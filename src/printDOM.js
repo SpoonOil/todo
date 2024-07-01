@@ -121,6 +121,7 @@ class DOMHandler {
     const monthSelect = deadlineParent.querySelector("#month-select");
     const yearSelect = deadlineParent.querySelector("#year-select");
 
+
     deadlineToggle.addEventListener("click", () => {
       this.renderFunction()
     })
@@ -188,8 +189,19 @@ class DOMHandler {
       daySelect.appendChild(dayOption)
     }
 
+    this.setDefaultDay(yearSelect, monthSelect, daySelect)
 
-    console.log(leap)
+  }
+
+  setDefaultDay(yearSelect, monthSelect, daySelect) {
+    const todayDate = new Date(Date.now())
+    const todayMonth = todayDate.getMonth()
+    const todayYear = todayDate.getFullYear()
+    const todayDay = todayDate.getDate();
+    console.table(todayMonth, todayYear, todayDay)
+    yearSelect.value = todayYear
+    monthSelect.value = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][todayMonth];
+    daySelect.value = todayDay
   }
 
   setCurrentList(list) {

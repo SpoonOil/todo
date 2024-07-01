@@ -21,6 +21,7 @@ class Overhead {
             this.addTask(this.nameInput.value, this.descriptionInput.value, this.priorityInput.value);
             this.nameInput.value = "";
             this.descriptionInput.value = "";
+            this.priorityInput.value = "normal"
         })
     }
 
