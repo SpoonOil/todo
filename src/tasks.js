@@ -1,6 +1,6 @@
 import { format, compareAsc, constructNow } from "date-fns";
 class Task {
-  constructor(name, description, taskList, dueDate) {
+  constructor(name, description, taskList, priority, dueDate) {
     this.name = name;
     this.description = description;
     this.completed = "notCompleted";
@@ -9,6 +9,7 @@ class Task {
     this.id = this.parent.getNextId();
     this.dueDate = dueDate
     this.createDate = format(Date.now(), "MM/dd/yyyy")
+    this.priority = priority
     console.log(this.createDate)
   }
 
@@ -52,11 +53,29 @@ class TaskList {
         uncompletedTasks.push(task)
       }
     }
+
+    let normalPriority = []
+    let highPriority = []
+
+    for (let task of uncompletedTasks) {
+      console.log(task)
+      if (task.priority == "normal") {
+        normalPriority.unshift(task)
+      } else if (task.priority == "low") {
+        normalPriority.push(task)
+      } else if (task.priority == "high") {
+        highPriority.push(task)
+      } else if (task.priority == "veryHigh") {
+        highPriority.unshift(task)
+      }
+    }
+    uncompletedTasks = highPriority.concat(normalPriority)
+
     const sortedTasks = uncompletedTasks.concat(completedTasks)
     return sortedTasks;
   }
-  addTask(taskName, taskDescription, list) {
-    this.tasks.push(new Task(taskName, taskDescription, this));
+  addTask(taskName, taskDescription, priority, dueDate) {
+    this.tasks.push(new Task(taskName, taskDescription, this, priority, dueDate));
   }
 
   removeTask(taskID) {

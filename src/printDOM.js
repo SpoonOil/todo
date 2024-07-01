@@ -240,6 +240,32 @@ class DOMHandler {
       const checkbox = document.createElement('input');
       addTailwindStyleString(checkbox, 'appearance-none active:border-0 checked:bg-slate-600 checked:border-1 w-5 h-5 border-2 border-slate-500 bg-white rounded-full')
 
+      const priorityInfo = document.createElement("span")
+      addTailwindStyleString(priorityInfo, "p-3 rounded-md")
+      let prioText = ""
+
+      switch (task.priority) {
+        case "normal":
+          prioText = "Normal"
+          priorityInfo.classList.add("bg-slate-300")
+          break;
+        case "high":
+          prioText = "High"
+          priorityInfo.classList.add("bg-red-100")
+          break;
+        case "veryHigh":
+          prioText = "Very High"
+          priorityInfo.classList.add("bg-red-300")
+          break;
+        case "low":
+          prioText = "Low"
+          priorityInfo.classList.add("bg-slate-100")
+          break;
+      }
+
+
+      priorityInfo.innerText = prioText;
+
       const close = document.createElement('button')
       addTailwindStyleString(close, 'bg-red-200 p-3 w-12 rounded-md align-top')
 
@@ -267,6 +293,7 @@ class DOMHandler {
       info.appendChild(title);
       info.appendChild(description);
       li.appendChild(info)
+      li.appendChild(priorityInfo)
       li.appendChild(close)
 
       if (task.completed == "completed") {

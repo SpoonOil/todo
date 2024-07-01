@@ -1,23 +1,31 @@
 class Overhead {
     constructor(addDisplayNode, listclass, listsArray, taskList, domObject) {
         domObject.renderFunction();
-        const button = addDisplayNode.querySelector('#add-task-button')
         const nameInput = addDisplayNode.querySelector('#task-name-input')
         const descriptionInput = addDisplayNode.querySelector('#task-description-input')
-        button.addEventListener('click', () => {
-            this.addTask(nameInput.value, descriptionInput.value);
-            nameInput.value = "";
-            descriptionInput.value = "";
-        })
 
         this.taskList = taskList;
         this.renderFunction = domObject.renderFunction
         this.nameInput = nameInput
+        this.descriptionInput = descriptionInput
         this.listclass = listclass
         this.listsArray = listsArray
         this.domObject = domObject
         this.renameListButton = undefined;
         this.renameListInput = "none";
+    }
+
+    bindAddTaskButton(node) {
+        console.log(this.priorityInput.value)
+        node.addEventListener('click', () => {
+            this.addTask(this.nameInput.value, this.descriptionInput.value, this.priorityInput.value);
+            this.nameInput.value = "";
+            this.descriptionInput.value = "";
+        })
+    }
+
+    bindPriorityInput(node) {
+        this.priorityInput = node;
     }
 
     updateListName(input) {
@@ -44,11 +52,11 @@ class Overhead {
         })
     }
 
-    addTask(name, description) {
+    addTask(name, description, priority, dueDate) {
         this.updateActiveList()
         this.nameInput.reportValidity()
         if (this.nameInput.checkValidity()) {
-            this.taskList.addTask(name, description)
+            this.taskList.addTask(name, description, priority, dueDate)
             this.domObject.renderFunction();
         }
     }
