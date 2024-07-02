@@ -1,4 +1,5 @@
-import { Task, TaskList } from "./tasks.js"
+import { TaskList } from "./tasks.js"
+import { format } from "date-fns"
 
 function addTailwindStyleString(node, tailwindStyleString) {
   const classes = tailwindStyleString.split(' ')
@@ -120,7 +121,9 @@ class DOMHandler {
     const daySelect = deadlineParent.querySelector("#day-select");
     const monthSelect = deadlineParent.querySelector("#month-select");
     const yearSelect = deadlineParent.querySelector("#year-select");
-
+    this.daySelect = daySelect
+    this.monthSelect = monthSelect
+    this.yearSelect = yearSelect
 
     deadlineToggle.addEventListener("click", () => {
       this.renderFunction()
@@ -182,26 +185,25 @@ class DOMHandler {
       leap ? daysInMonth : daysInMonth--;
     }
 
-    for (let day = 0; day <= daysInMonth; day++) {
+    for (let day = 1; day <= daysInMonth; day++) {
       const dayOption = document.createElement("option");
       dayOption.innerText = day
       dayOption.classList.add("p-3");
       daySelect.appendChild(dayOption)
     }
 
-    this.setDefaultDay(yearSelect, monthSelect, daySelect)
 
   }
 
-  setDefaultDay(yearSelect, monthSelect, daySelect) {
+  setDefaultDay() {
     const todayDate = new Date(Date.now())
     const todayMonth = todayDate.getMonth()
     const todayYear = todayDate.getFullYear()
     const todayDay = todayDate.getDate();
     console.table(todayMonth, todayYear, todayDay)
-    yearSelect.value = todayYear
-    monthSelect.value = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][todayMonth];
-    daySelect.value = todayDay
+    this.yearSelect.value = todayYear
+    this.monthSelect.value = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][todayMonth];
+    this.daySelect.value = todayDay
   }
 
   setCurrentList(list) {
@@ -251,6 +253,16 @@ class DOMHandler {
 
       const checkbox = document.createElement('input');
       addTailwindStyleString(checkbox, 'appearance-none active:border-0 checked:bg-slate-600 checked:border-1 w-5 h-5 border-2 border-slate-500 bg-white rounded-full')
+
+      const deadlineInfo = document.createElement('div')
+      const deadlineHeader = document.createElement('h5')
+      const deadlineBody = document.createElement('p')
+
+      deadlineInfo.appendChild(deadlineHeader);
+      deadlineInfo.appendChild(deadlineBody);
+      addTailwindStyleString(deadlineInfo, "flex flex-col items-center")
+
+      deadlineHeader.innerText = "Due"
 
       const priorityInfo = document.createElement("span")
       addTailwindStyleString(priorityInfo, "p-3 rounded-md")
@@ -305,6 +317,11 @@ class DOMHandler {
       info.appendChild(title);
       info.appendChild(description);
       li.appendChild(info)
+      if (task.dueDate != "No Deadline") {
+        deadlineBody.innerText = format(task.dueDate, "MM/dd/yyyy");
+        li.appendChild(deadlineInfo);
+      }
+
       li.appendChild(priorityInfo)
       li.appendChild(close)
 

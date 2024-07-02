@@ -58,7 +58,6 @@ class TaskList {
     let highPriority = []
 
     for (let task of uncompletedTasks) {
-      console.log(task)
       if (task.priority == "normal") {
         normalPriority.unshift(task)
       } else if (task.priority == "low") {

@@ -15,13 +15,28 @@ class Overhead {
         this.renameListInput = "none";
     }
 
+    bindDateInputs(dayNode, monthNode, yearNode, deadlineToggle) {
+        this.dayNode = dayNode;
+        this.monthNode = monthNode;
+        this.yearNode = yearNode;
+        this.deadlineToggle = deadlineToggle;
+    }
+
+    getDateInput() {
+        if (this.deadlineToggle.checked == false) { return "No Deadline" }
+
+        const date = new Date(this.yearNode.value, ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"].indexOf(this.monthNode.value), this.dayNode.value)
+        console.log(date)
+        return date
+    }
     bindAddTaskButton(node) {
         console.log(this.priorityInput.value)
         node.addEventListener('click', () => {
-            this.addTask(this.nameInput.value, this.descriptionInput.value, this.priorityInput.value);
+            this.addTask(this.nameInput.value, this.descriptionInput.value, this.priorityInput.value, this.getDateInput());
             this.nameInput.value = "";
             this.descriptionInput.value = "";
             this.priorityInput.value = "normal"
+            this.domObject.setDefaultDay();
         })
     }
 
