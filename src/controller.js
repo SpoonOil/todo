@@ -1,3 +1,4 @@
+import * as jc from "json-cycle"
 class Overhead {
     constructor(addDisplayNode, listclass, listsArray, taskList, domObject) {
         domObject.renderFunction();
@@ -37,6 +38,7 @@ class Overhead {
             this.descriptionInput.value = "";
             this.priorityInput.value = "normal"
             this.domObject.setDefaultDay();
+            this.saveToLocal()
         })
     }
 
@@ -47,6 +49,7 @@ class Overhead {
     updateListName(input) {
         const list = this.domObject.getActiveList();
         list.setName(input.value)
+        this.saveToLocal()
     }
 
     setDeleteListNode(node) {
@@ -57,6 +60,7 @@ class Overhead {
 
     deleteCurrentList() {
         this.removeTaskList(this.domObject.getActiveList())
+        this.saveToLocal()
     }
     setRenameListNodes(buttonNode, nameInput) {
         this.renameListButton = buttonNode;
@@ -85,6 +89,7 @@ class Overhead {
         this.updateActiveList()
         this.taskList.removeTask(name)
         this.domObject.renderFunction();
+        this.saveToLocal();
     }
 
     addTaskList(list) {
@@ -93,6 +98,8 @@ class Overhead {
             this.domObject.setCurrentList(this.listsArray[0])
         }
         this.render();
+
+        this.saveToLocal();
     }
 
     removeTaskList(list) {
@@ -100,10 +107,16 @@ class Overhead {
         this.domObject.setCurrentList(this.listsArray[0]);
         this.domObject.setQuickbarMode("addTask");
         this.render();
+        this.saveToLocal();
     }
     updateActiveList() {
         const list = this.domObject.getActiveList()
         this.taskList = list;
+    }
+
+    saveToLocal() {
+        localStorage.setItem("allTodoLists", JSON.stringify(jc.decycle(this.listsArray)))
+
     }
 }
 

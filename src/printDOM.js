@@ -15,6 +15,9 @@ class DOMHandler {
     this.quickbarMode = "addTask"
     this.quickbarNodes = []
   }
+  bindController(controlObj) {
+    this.controller = controlObj
+  }
 
   bindTaskDeadlineDisplay(node) {
     this.taskDeadlineDisplay = node;
@@ -111,6 +114,7 @@ class DOMHandler {
       this.setCurrentList(newList)
       this.setQuickbarMode("editList");
       this.renderFunction();
+      this.controller.saveToLocal();
     })
   }
 
@@ -297,6 +301,7 @@ class DOMHandler {
       close.addEventListener('click', () => {
         this.currentList.removeTask(task.id)
         this.renderTaskList()
+        this.controller.saveToLocal();
       });
 
       checkbox.type = 'checkbox'
@@ -304,9 +309,11 @@ class DOMHandler {
       checkbox.addEventListener('click', () => {
         if (task.completed == "notCompleted") {
           this.currentList.completeTask(task.id)
+          this.controller.saveToLocal();
           this.renderTaskList()
         } else {
           this.currentList.uncompleteTask(task.id)
+          this.controller.saveToLocal();
           this.renderTaskList()
         }
       })
