@@ -7,7 +7,7 @@ const test = new TaskList('Tasks', 'Description');
 test.addTask("Task", "This is an example Task", "normal", new Date(Date.now()));
 let taskLists = []
 taskLists.push(test)
-if (localStorage.allTodoLists[0] != undefined) {
+if (localStorage.allTodoLists != undefined) {
     console.log("LOCAL STORAGE FOUND")
     console.log(localStorage.allTodoLists)
     taskLists = jc.retrocycle(JSON.parse(localStorage.allTodoLists))
