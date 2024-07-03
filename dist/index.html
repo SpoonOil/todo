@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html class = "h-full" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <title>Task List</title>
+  <script defer src="bundle.js"></script></head>
+  <body class="h-full flex flex-col">
+    <head class="flex">
+      <h1 class="max-w-sm m-auto text-center text-3xl">To Do</h1>
+    </head>
+    <main class="flex flex-1">
+      <div class="leftPanel p-5 flex-none w-52 bg-slate-300 rounded-t-md">
+        <h1 class = "text-center w-full">Lists</h1>
+        <ul id = 'task-lists-display'>
+
+        </ul>
+      </div>
+      <div class="content flex-1">
+        <ul class="task-display-list flex flex-col">
+          <li class="flex gap-4 items-center flex-1 p-8 rounded-lg bg-slate-200">
+            <input title = "completed" id="complete-check" type="checkbox" class = "appearance-none active:border-0 checked:bg-slate-600 checked:border-1 w-5 h-5 border-2 border-slate-500 bg-white rounded-full" />
+            <h3>TEST</h3>
+            <p class ="flex-1">this is a test task</p>
+            <button class = "bg-red-200 w-8 h-8 rounded-md font-mono">X</button>
+          </li>
+        </ul>
+      </div>
+
+    </main>
+    <div class="bottomPanel bg-slate-300 rounded-xl">
+      <div
+        id="add-task-display"
+        class="add-task-display hidden flex flex-col justify-center items-center p-8 bg-slate-300 rounded-xl"
+      >
+        <div class="add-task-main">
+          <label for="task-name-input" class="p-3">Task</label>
+          <input type="text" name="task-name"
+            id="task-name-input"
+            class="rounded-md"
+            minlength="1"
+            required
+          />
+          <label for="task-description-input" class="p-3"
+          >Task Description</label
+          >
+          <input
+            type="text"
+            name="task-description-input"
+            id="task-description-input"
+            class="rounded-md"
+          /> 
+          <button
+            type="button"
+            id="add-task-button"
+            class="font-bold p-4 bg-slate-400 rounded-lg hover:bg-slate-500 active:bg-slate-300"
+          >
+            Add Task
+          </button>
+
+        </div>  
+
+        <div id="task-extras-input" class = "flex w-full gap-4 justify-center">
+          <div id="task-priority-container">
+            <label for="task-priority-select">Priority</label>
+            <select name="task-priority" class = "p-2" id="task-priority-select">
+              <option value="normal">Normal</option>
+              <option value="high">High</option>
+              <option value="low">Low</option>
+              <option value="veryHigh">Very High</option>
+            </select>
+          </div>
+          <div id="task-deadline-container" class = "flex flex-col items-center justify-between">
+            <div class="deadline-toggle-container flex gap-3">
+              <label for="task-deadline-checkbox">Deadline?</label>
+              <input type="checkbox" name="deadline-checkbox" id="task-deadline-checkbox">
+
+            </div>   
+            <div class="deadline-date-container flex items-center gap-3">
+
+              <label for="year-select">Year</label>
+              <select name="year-select" class = "p-2" id="year-select">
+
+              </select>
+
+              <label for="month-select">Month</label>
+              <select name="month-select" class = "p-2" id="month-select">
+
+              </select>
+              <label for="day-select">Day</label>
+              <select name="day-select" class = "p-2" id="day-select">
+
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tasklist-info hidden flex flex-col p-8 bg-slate-300 rounded-xl">
+        <div class="tasklist-sidebar-header flex justify-between items-center">
+          <h1 class = "text-center" >List Settings</h1>
+        </div>
+        <div class="tasklist-edit-inputs flex">
+          <div class="flex justify-between items-center gap-2">
+            <label for="tasklist-name-input">Name</label>
+            <input class = "rounded-md p-1" type="text" name="tasklist-name" id="tasklist-name-input">
+          </div>
+          <div class="flex-1"></div>
+          <button class = "text-center p-2 m-3 rounded-md bg-slate-400" id = "list-name-change-button" type="button">Done</button>
+          <button id = "delete-list-button" class = "text-center p-2 m-3 rounded-md bg-red-400">Delete</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
